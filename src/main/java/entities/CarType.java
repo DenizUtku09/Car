@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,4 +21,8 @@ public class CarType {
     private int id;
     @Column(name = "type")
     private String carType;
+    @OneToMany
+    private List<Car> cars=new ArrayList<>();
+
+
 }

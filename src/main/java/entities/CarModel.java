@@ -19,4 +19,6 @@ public class CarModel {
     @Column(name = "name")
     private String modelName;
 
+    @OneToOne
+    CarBrand carBrand;
 }
