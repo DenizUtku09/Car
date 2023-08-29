@@ -20,10 +20,10 @@ public class PriceManager implements PriceService {
         this.carDao=carDao;
     }
     @Override
-    public Price addPriceToCar(int id,Price price) {
+    public Price addPriceToCar(int id,int price) {
         Car existingCar=carDao.findCarById(id).orElseThrow(() -> new RuntimeException("This car does not exist by ID."));
         if(existingCar.getPrice()!=null){throw new RuntimeException("This car already has a price.");}
-        else{existingCar.setPrice(price);
+        else{existingCar.getPrice().setPrice(price);
         return existingCar.getPrice();}
     }
 
@@ -35,12 +35,12 @@ public class PriceManager implements PriceService {
     }
 
     @Override
-    public Price updatePriceInCar(int id, Price price) {
+    public Price updatePriceInCar(int id, int price) {
         Car existingCar=carDao.findCarById(id).orElseThrow(() -> new RuntimeException("This car does not exist by ID."));
         if(existingCar.getPrice()==null){throw new RuntimeException("This car does not have a price.");}
         else{
-            if(existingCar.getPrice().equals(price)){throw new RuntimeException("This price update is same as before.");}
-            existingCar.setPrice(price);
+            if(existingCar.getPrice().getPrice() == price){throw new RuntimeException("This price update is same as before.");}
+            existingCar.getPrice().setPrice(price);
             return existingCar.getPrice();
         }
     }

@@ -21,8 +21,18 @@ public class PriceController {
 
 
     @PostMapping( "/addPriceToCar/{id}")
-    public ResponseEntity<Price> addPriceToCar(@PathVariable int id, @RequestParam Price price){
+    public ResponseEntity<Price> addPriceToCar(@PathVariable int id, @RequestParam("price") int price){
         Price addedPrice=priceService.addPriceToCar(id, price);
         return ResponseEntity.ok(addedPrice);
     }
+    @PutMapping("/updatePriceInCar/{id}")
+    public ResponseEntity<Price> updatePriceInCar(@PathVariable int id,@RequestParam("price") int price){
+        Price updatedPrice=priceService.updatePriceInCar(id,price);
+        return ResponseEntity.ok(updatedPrice);
+    }
+    @DeleteMapping("/deletePriceInCar/{id}")
+    public void deletePriceInCar(@PathVariable int id){
+        priceService.deletePriceInCar(id);
+    }
+
 }

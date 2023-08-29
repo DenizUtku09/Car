@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 public interface PriceService {
 
 
-    Price addPriceToCar(int id,Price price);
+    Price addPriceToCar(int id,int price);
     void deletePriceInCar(int id);
-    Price updatePriceInCar(int id,Price price);
+    Price updatePriceInCar(int id,int price);
 
 
 }
