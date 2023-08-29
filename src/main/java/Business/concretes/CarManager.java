@@ -20,9 +20,8 @@ public class CarManager implements CarService {
         this.carDao=carDao;
     }
 
-
     @Override
     public List<Car> findCarsWithSorting(String field) {
-        return carDao.findAll(Sort.by(field));
+        return null;
     }
 }

@@ -1,16 +1,14 @@
-package api.controllers;
+package controller;
 
 import Business.abstracts.PriceService;
 import entities.Price;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/price-controller")
+@RequestMapping(name = "/api/Price")
 public class PriceController {
     private final PriceService priceService;
     @Autowired
@@ -18,8 +16,9 @@ public class PriceController {
         super();
         this.priceService=priceService;
     }
+    @PostMapping( "/addPriceToCar/{id}")
     public ResponseEntity<Price> addPriceToCar(@PathVariable int id, @RequestParam Price price){
-        Price addedPrice=priceService.addPriceToCar(id,price);
+        Price addedPrice=priceService.addPriceToCar(id, price);
         return ResponseEntity.ok(addedPrice);
     }
 }
