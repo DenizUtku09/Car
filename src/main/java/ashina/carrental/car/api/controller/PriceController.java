@@ -21,7 +21,7 @@ public class PriceController {
 
 
     @PostMapping( "/addPriceToCar/{id}")
-    public ResponseEntity<Price> addPriceToCar(@PathVariable int id, @RequestParam("price") int price){
+    public ResponseEntity<Price> addPriceToCar(@PathVariable("id") int id, @RequestParam("price") int price){
         Price addedPrice=priceService.addPriceToCar(id, price);
         return ResponseEntity.ok(addedPrice);
     }
