@@ -29,7 +29,7 @@ public class CarBrandController {
         return ResponseEntity.ok(addedCarBrand);}
 
     @PutMapping("/updateCarBrandByName/{brandName}")
-    public @ResponseBody ResponseEntity<CarBrand> updateCarBrandByName(@PathVariable String brandName,@RequestParam String brandName2){
+    public @ResponseBody ResponseEntity<CarBrand> updateCarBrandByName(@PathVariable String brandName,@RequestParam(name = "updatedCarBrand") String brandName2){
         CarBrand updatedCarBrand=carBrandService.updateCarBrandByName(brandName,brandName2);
         return ResponseEntity.ok(updatedCarBrand);
     }
@@ -50,9 +50,13 @@ public class CarBrandController {
     public List<CarBrand> getAllCarBrands(){
         return carBrandService.getAllCarBrands();
     }
-    @PostMapping("/addCarBrandToCar/{carId}")
+    @PostMapping("/addCarBrandToCarById/{carId}")
     public Car addCarBrandToCarById(@PathVariable int carId,@RequestParam int brandId){
         return carBrandService.addCarBrandToCarById(carId,brandId);
 
+    }
+    @PostMapping("/addCarBrandToCarByName/{carId}")
+    public  Car addCarBrandToCarByName(@PathVariable int carId,@RequestParam String brandName){
+        return carBrandService.addCarBrandToCarByName(carId,brandName);
     }
 }

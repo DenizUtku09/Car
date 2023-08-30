@@ -80,6 +80,24 @@ public class CarBrandManager implements CarBrandService {
 
         existingCar.setCarBrand(existingCarBrand);
         return existingCar;
+    }
+
+    @Override
+    public Car addCarBrandToCarByName(int carId, String brandName) {
+
+        Car existingCar=carDao.findCarById(carId)
+                .orElseThrow(() -> new RuntimeException("This car does not exist by ID."));
+        CarBrand existingCarBrand=carBrandDao.findCarBrandByBrandName(brandName)
+                .orElseThrow(() -> new RuntimeException("This car brand does not exist by name."));
+
+        existingCar.setCarBrand(existingCarBrand);
+        return existingCar;
 
     }
+
+    @Override
+    public Car updateCarBrandInCar(int carId, String brandName) {
+        return null;
+    }
+
 }

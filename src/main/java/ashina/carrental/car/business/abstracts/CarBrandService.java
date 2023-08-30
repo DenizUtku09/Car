@@ -17,5 +17,9 @@ public interface CarBrandService {
     void deleteCarBrandById(int id);
     List<CarBrand> getAllCarBrands();
     Car addCarBrandToCarById(int carId,int brandId);
+    Car addCarBrandToCarByName(int carId,String brandName);
+
+    Car updateCarBrandInCar(int carId,String brandName);
+
 
 }
