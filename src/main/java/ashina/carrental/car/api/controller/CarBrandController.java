@@ -53,10 +53,24 @@ public class CarBrandController {
     @PostMapping("/addCarBrandToCarById/{carId}")
     public Car addCarBrandToCarById(@PathVariable int carId,@RequestParam int brandId){
         return carBrandService.addCarBrandToCarById(carId,brandId);
-
     }
     @PostMapping("/addCarBrandToCarByName/{carId}")
     public  Car addCarBrandToCarByName(@PathVariable int carId,@RequestParam String brandName){
         return carBrandService.addCarBrandToCarByName(carId,brandName);
+    }
+    @PutMapping("/updateCarBrandInCarByName/{carId}")
+    public ResponseEntity<Car> updateCarBrandInCarByName(@PathVariable int carId,@RequestParam String brandName){
+        Car updatedCar=carBrandService.updateCarBrandInCarByName(carId,brandName);
+        return ResponseEntity.ok(updatedCar);
+    }
+    @PutMapping("/updateCarBrandInCarById/{carId}")
+    public ResponseEntity<Car> updateCarBrandInCarById(@PathVariable int carId,@RequestParam int brandId){
+        Car updatedCar=carBrandService.updateCarBrandInCarById(carId,brandId);
+        return ResponseEntity.ok(updatedCar);
+    }
+    @DeleteMapping("/deleteCarBrandInCar/{carId}")
+    public ResponseEntity<Car> deleteCarBrandInCar(@PathVariable int carId){
+        Car updatedCar=carBrandService.deleteCarBrandInCar(carId);
+        return ResponseEntity.ok(updatedCar);
     }
 }

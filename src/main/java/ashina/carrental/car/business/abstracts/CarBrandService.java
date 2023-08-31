@@ -19,7 +19,10 @@ public interface CarBrandService {
     Car addCarBrandToCarById(int carId,int brandId);
     Car addCarBrandToCarByName(int carId,String brandName);
 
-    Car updateCarBrandInCar(int carId,String brandName);
+    Car updateCarBrandInCarByName(int carId,String brandName);
+    Car updateCarBrandInCarById(int carId,int brandId);
+    Car deleteCarBrandInCar(int carId);
+
 
 
 }

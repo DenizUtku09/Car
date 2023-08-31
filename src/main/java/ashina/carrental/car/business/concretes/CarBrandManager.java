@@ -96,8 +96,41 @@ public class CarBrandManager implements CarBrandService {
     }
 
     @Override
-    public Car updateCarBrandInCar(int carId, String brandName) {
-        return null;
+    public Car updateCarBrandInCarByName(int carId, String brandName) {
+        Car existingCar = carDao.findCarById(carId)
+                .orElseThrow(() -> new RuntimeException("This car does not exist by ID."));
+        CarBrand existingCarBrand = carBrandDao.findCarBrandByBrandName(brandName)
+                .orElseThrow(() -> new RuntimeException("This car brand does not exist by name."));
+
+        if (existingCar.getCarBrand() == existingCarBrand) {
+            throw new RuntimeException("This car brand is same as before.");
+        }
+        existingCar.setCarBrand(existingCarBrand);
+        carDao.save(existingCar);
+        return existingCar;
+    }
+
+    @Override
+    public Car updateCarBrandInCarById(int carId, int brandId) {
+        Car existingCar = carDao.findCarById(carId)
+                .orElseThrow(() -> new RuntimeException("This car does not exist by ID."));
+        CarBrand existingCarBrand=carBrandDao.findCarBrandById(brandId)
+                .orElseThrow(() -> new RuntimeException("This car brand does not exist by ID."));
+        if(existingCar.getCarBrand().equals(existingCarBrand)){
+            throw new RuntimeException("This car brand is same as before.");
+        }
+        existingCar.setCarBrand(existingCarBrand);
+        carDao.save(existingCar);
+        return existingCar;
+    }
+
+    public Car deleteCarBrandInCar(int carId){
+        Car existingCar = carDao.findCarById(carId)
+                .orElseThrow(() -> new RuntimeException("This car does not exist by ID."));
+
+        existingCar.setCarBrand(null);
+        return existingCar;
+
     }
 
 }
