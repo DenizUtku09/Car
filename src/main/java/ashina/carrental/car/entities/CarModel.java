@@ -19,6 +19,6 @@ public class CarModel {
     @Column(name = "name")
     private String modelName;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     CarBrand carBrand;
 }

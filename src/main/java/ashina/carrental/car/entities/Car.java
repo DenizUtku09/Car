@@ -41,6 +41,9 @@ public class Car {
     @OneToOne
     @JoinColumn(name = "color_id")
     Color color;
+    @OneToOne
+    @JoinColumn(name = "model_id")
+    CarModel carModel;
 
 
 
