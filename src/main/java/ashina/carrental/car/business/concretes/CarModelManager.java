@@ -106,21 +106,61 @@ public class CarModelManager implements CarModelService {
 
     @Override
     public Car addCarModelToCarById(int carId, int modelId) {
-        return null;
+        Car existingCar=carDao.findCarById(carId)
+                .orElseThrow(() -> new RuntimeException("This car does not exist by ID."));
+        CarModel existingCarModel=carModelDao.findCarModelById(modelId)
+                .orElseThrow(() -> new RuntimeException("This car model does not exist by name."));
+
+
+        existingCar.setCarBrand(existingCarModel.getCarBrand());
+        existingCar.setCarModel(existingCarModel);
+        carDao.save(existingCar);
+        return existingCar;
+
     }
 
     @Override
     public Car updateCarModelInCarByName(int id, String modelName) {
-        return null;
+        Car existingCar=carDao.findCarById(id)
+                .orElseThrow(() -> new RuntimeException("This car does not exist by ID."));
+        CarModel existingCarModel=carModelDao.findCarModelByModelName(modelName)
+                .orElseThrow(() -> new RuntimeException("This car model does not exist by name."));
+
+        existingCar.setCarBrand(null);
+        existingCar.setCarBrand(existingCarModel.getCarBrand());
+        existingCar.setCarModel(null);
+        existingCar.setCarModel(existingCarModel);
+        return existingCar;
+
+
+
+
+
+
+
     }
 
     @Override
     public Car updateCarModelInCarById(int id, int modelId) {
-        return null;
+
+        Car existingCar=carDao.findCarById(id)
+                .orElseThrow(() -> new RuntimeException("This car does not exist by ID."));
+        CarModel existingCarModel=carModelDao.findCarModelById(modelId)
+                .orElseThrow(() -> new RuntimeException("This car model does not exist by name."));
+
+        existingCar.setCarBrand(null);
+        existingCar.setCarBrand(existingCarModel.getCarBrand());
+        existingCar.setCarModel(null);
+        existingCar.setCarModel(existingCarModel);
+        return existingCar;
     }
 
     @Override
     public Car deleteCarModelInCar(int id) {
-        return null;
+        Car existingCar=carDao.findCarById(id)
+                .orElseThrow(() -> new RuntimeException("This car does not exist by id."));
+
+        existingCar.setCarModel(null);
+        return existingCar;
     }
 }
