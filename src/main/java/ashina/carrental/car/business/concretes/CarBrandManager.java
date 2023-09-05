@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Service
 public class CarBrandManager implements CarBrandService {
     private final CarBrandDao carBrandDao;
@@ -66,8 +68,11 @@ public class CarBrandManager implements CarBrandService {
     }
 
     @Override
-    public List<CarBrand> getAllCarBrands() {
-        return carBrandDao.findAll();
+    public List<String> getAllCarBrands() {
+        return carBrandDao.findAll()
+                .stream()
+                .map(CarBrand::getBrandName)
+                .collect(Collectors.toList());
 
     }
 

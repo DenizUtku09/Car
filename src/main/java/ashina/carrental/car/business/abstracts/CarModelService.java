@@ -3,6 +3,8 @@ package ashina.carrental.car.business.abstracts;
 import ashina.carrental.car.entities.Car;
 import ashina.carrental.car.entities.CarModel;
 
+import java.util.List;
+
 public interface CarModelService {
 
     CarModel addCarModel(int brandId,String modelName);
@@ -17,6 +19,10 @@ public interface CarModelService {
     Car updateCarModelInCarByName(int id,String modelName);
     Car updateCarModelInCarById(int id,int modelId);
     Car deleteCarModelInCar(int id);
+
+    List<String> getAllCarModels();
+    List<String> getAllCarModelsInBrand(int id);
+
 
 
 

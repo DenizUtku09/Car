@@ -1,12 +1,10 @@
 package ashina.carrental.car.business.abstracts;
 
 
-import ashina.carrental.car.Requests.AddCarBrandRequest;
 import ashina.carrental.car.entities.Car;
 import ashina.carrental.car.entities.CarBrand;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 public interface CarBrandService {
 
@@ -15,13 +13,16 @@ public interface CarBrandService {
     CarBrand updateCarBrandById(int id,String brandName);
     void deleteCarBrandByName(String brandName);
     void deleteCarBrandById(int id);
-    List<CarBrand> getAllCarBrands();
+    List<String> getAllCarBrands();
     Car addCarBrandToCarById(int carId,int brandId);
     Car addCarBrandToCarByName(int carId,String brandName);
 
     Car updateCarBrandInCarByName(int carId,String brandName);
     Car updateCarBrandInCarById(int carId,int brandId);
     Car deleteCarBrandInCar(int carId);
+
+
+
 
 
 

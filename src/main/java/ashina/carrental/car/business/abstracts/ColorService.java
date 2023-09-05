@@ -1,0 +1,19 @@
+package ashina.carrental.car.business.abstracts;
+
+import ashina.carrental.car.entities.Car;
+import ashina.carrental.car.entities.Color;
+
+public interface ColorService {
+
+    Color addColor(String colorName);
+    Color updateColor(int id,String colorName,String updatedColorName);
+    void deleteColor(int id,String colorName);
+    Car addColorToCar(int carId, int colorId, String colorName);
+    Car updateColorInCar(int carId,int colorId,String colorName);
+    void deleteColorInCar(int carId);
+
+
+
+
+
+}

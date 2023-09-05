@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(name = "/api/carModelController")
@@ -54,6 +56,29 @@ public class CarModelController {
     public ResponseEntity<Car> addCarModelToCarByName(@PathVariable int carId,@RequestParam String modelName){
         Car updatedCar=carModelService.addCarModelToCarByName(carId,modelName);
         return ResponseEntity.ok(updatedCar);
+    }
+    @PutMapping("/updateCarModelInCarByName/{id}")
+    public ResponseEntity<Car> updateCarModelInCarByName(@PathVariable int id,@RequestParam String modelName){
+        Car updatedCar=carModelService.updateCarModelInCarByName(id,modelName);
+        return  ResponseEntity.ok(updatedCar);
+    }
+    @PutMapping("/updateCarModelInCarById/{id}")
+    public ResponseEntity<Car> updateCarModelInCarById(@PathVariable int id,@RequestParam int modelId){
+        Car updatedCar=carModelService.updateCarModelInCarById(id,modelId);
+        return  ResponseEntity.ok(updatedCar);
+    }
+    @DeleteMapping("/deleteCarModelInCar")
+    public void deleteCarModelInCar(@RequestParam int id)
+    {
+        carModelService.deleteCarModelInCar(id);
+    }
+    @GetMapping("/getAllCarModels")
+    public List<String> getAllCarModels(){
+        return carModelService.getAllCarModels();
+    }
+    @GetMapping("/getAllCarModelsInBrand/{id}")
+    public List<String> getAllCarModelsInBrand(@PathVariable int id){
+        return carModelService.getAllCarModelsInBrand(id);
     }
 
 }

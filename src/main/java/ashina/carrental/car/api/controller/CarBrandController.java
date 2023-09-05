@@ -47,7 +47,7 @@ public class CarBrandController {
         carBrandService.deleteCarBrandById(id);
     }
     @GetMapping("/getAllCarBrands")
-    public List<CarBrand> getAllCarBrands(){
+    public List<String> getAllCarBrands(){
         return carBrandService.getAllCarBrands();
     }
     @PostMapping("/addCarBrandToCarById/{carId}")

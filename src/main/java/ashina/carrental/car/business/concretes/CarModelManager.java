@@ -10,7 +10,9 @@ import ashina.carrental.car.entities.CarModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CarModelManager implements CarModelService {
@@ -162,5 +164,18 @@ public class CarModelManager implements CarModelService {
 
         existingCar.setCarModel(null);
         return existingCar;
+    }
+
+    @Override
+    public List<String> getAllCarModels() {
+        return carModelDao.findAll()
+                .stream().map(CarModel::getModelName)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<String> getAllCarModelsInBrand(int id) {
+        return carModelDao.findCarModelsByCarBrandId(id)
+                .stream().map(CarModel::getModelName).collect(Collectors.toList());
     }
 }
