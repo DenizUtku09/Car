@@ -2,6 +2,8 @@ package ashina.carrental.car.business.abstracts;
 
 import ashina.carrental.car.entities.Car;
 import ashina.carrental.car.entities.Color;
+import org.springframework.stereotype.Service;
+
 
 public interface ColorService {
 

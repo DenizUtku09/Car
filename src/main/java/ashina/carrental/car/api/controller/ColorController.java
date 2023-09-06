@@ -1,17 +1,13 @@
 package ashina.carrental.car.api.controller;
 
 
-import ashina.carrental.car.DataAccess.ColorDao;
+
 import ashina.carrental.car.business.abstracts.ColorService;
+import ashina.carrental.car.entities.Car;
 import ashina.carrental.car.entities.Color;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(name = "/api/colorController")
 public class ColorController {
@@ -21,11 +17,37 @@ public class ColorController {
         super();
         this.colorService=colorService;
     }
-    @PutMapping("/addColor")
+    @PostMapping("/addColor")
     public ResponseEntity<Color> addColor(@RequestParam String colorName){
         Color addedColor=colorService.addColor(colorName);
         return ResponseEntity.ok(addedColor);
     }
+
+    @PutMapping("/updateColor/{id}/{colorName}")
+    public ResponseEntity<Color> updateColor(@PathVariable int id,@PathVariable String colorName,@RequestParam String updatedColorName){
+        Color updatedColor=colorService.updateColor(id,colorName,updatedColorName);
+        return ResponseEntity.ok(updatedColor);
+    }
+    @DeleteMapping("/deleteColor")
+    public void deleteColor(@RequestParam int id,@RequestParam String colorName){
+        colorService.deleteColor(id,colorName);
+    }
+    @PostMapping("/addColorToCar/{carId}")
+    public ResponseEntity<Car> addColorToCar(@PathVariable int carId,@RequestParam int colorId,@RequestParam String colorName){
+        Car updatedCar=colorService.addColorToCar(carId,colorId,colorName);
+        return ResponseEntity.ok(updatedCar);
+    }
+    @PutMapping("/updateColorInCar/{carId}")
+    public ResponseEntity<Car> updateColorInCar(@PathVariable int carId,@RequestParam int colorId,@RequestParam String colorName){
+        Car updatedCar=colorService.addColorToCar(carId,colorId,colorName);
+        return ResponseEntity.ok(updatedCar);
+    }
+    @DeleteMapping("/deleteColorInCar")
+    public void deleteColorInCar(@RequestParam int carId){
+        colorService.deleteColorInCar(carId);
+
+    }
+
 
 }
 

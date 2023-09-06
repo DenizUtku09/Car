@@ -6,9 +6,11 @@ import ashina.carrental.car.business.abstracts.ColorService;
 import ashina.carrental.car.entities.Car;
 import ashina.carrental.car.entities.Color;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
 import java.util.Optional;
 @RequiredArgsConstructor
-
+@Service
 public class ColorManager implements ColorService {
     private final ColorDao colorDao;
     private final CarDao carDao;
